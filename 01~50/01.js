@@ -1,6 +1,8 @@
 const a = {a:`a`};
 const b = {b:`b`};
 
+const c = Object.assign({},a,b);
+
 // const c = {...a, ...b};
 
 
@@ -12,8 +14,14 @@ const b = {b:`b`};
 
 // const c = {...a , ...b};
 
-const c = Object.assign({},a,b);
+// const c = Object.assign({},a,b);1
 
 console.log(c);
 
+const d = {a:1,b:2,c:3};
+const e = {...d , d:4,e:5};
+console.log(e);
 
+const {f,...g} = {f:1,b:2,c:3,d:4,e:5}
+console.log(f);
+console.log(g);
