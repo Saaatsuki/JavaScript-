@@ -5,9 +5,11 @@ let arry =[
     {id:3,name:'ken'}
 ];
 
-// arry.sort(function(a, b) {
-//     return a.id - b.id;
-// });
+arry.sort(function(a, b) {
+    // return a.id - b.id;
+    return a.id > b.id;
 
-arry.sort((a, b) => a.id - b.id);
+});
+
+// arry.sort((a, b) => a.id - b.id);
 console.log(arry);
