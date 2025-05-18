@@ -12,4 +12,13 @@ arry.sort(function(a, b) {
 });
 
 // arry.sort((a, b) => a.id - b.id);
+
+
+// arry.sort(function(a,b) {
+//     return a.id - b.id;
+// })
+
+
+arry.sort((a,b)=> a.id > b.id)
+
 console.log(arry);

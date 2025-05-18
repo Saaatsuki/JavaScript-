@@ -1,0 +1,57 @@
+const up = function() {
+    let count = 0;
+    return function(){
+        return count += 1;
+    }
+};
+
+const next = up();
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());
+console.log(next());

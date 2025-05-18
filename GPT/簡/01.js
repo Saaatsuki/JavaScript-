@@ -3,4 +3,4 @@ function greating(argName) {
 }
 
 greating("사츠키");
-greating("황예지지");
+greating("황예지");
