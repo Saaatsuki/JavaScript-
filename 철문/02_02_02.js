@@ -5,12 +5,11 @@ const printScore = (mat, sci, eng) => {
                 : avg >= 70 ? "C"
                 : "F";
 
-    // HTMLに表示
     document.getElementById("result").innerText =
         `평균 점수: ${avg}점\n학점은 ${grade}입니다.`;
 };
 
-// ボタン押下時に呼ばれる関数
+
 function handleScore() {
     const mat = parseFloat(document.getElementById("math").value);
     const eng = parseFloat(document.getElementById("engl").value);

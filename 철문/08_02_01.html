@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산</title>
+</head>
+<body>
+    <form id="calForm">
+        <label for="firstNum">기본값 : </label>
+        <input type="number" id="firstNum">
+
+        <br>
+
+        <label for="menu">
+            <br>
+            1) 더하기
+            <br>
+            2) 빼기
+            <br>
+            3) 곱하기
+            <br>
+            4) 나누깅
+            <br>
+            위에 번호를 선택 :
+        </label>
+        <input type="number" id="menu" min="1" max="4">
+
+        <br>
+        <br>
+
+        <label for="endNum">숫자 입력</label>
+        <input type="number" id="endNum">
+
+        <br>
+        <br>
+        
+        <button type="submit">계산</button>
+
+    </form>
+
+
+    <br>
+    <br>
+    <div id="result"></div>
+
+<script>
+    const form = document.getElementById('calForm');
+    const resBox = document.getElementById('result');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // 폼 제출 시 새로고침 방지
+
+        const firstNum = parseFloat(document.getElementById('firstNum').value);
+        const menu = parseInt(document.getElementById('menu').value, 10);
+        const endNum = parseFloat(document.getElementById('endNum').value);
+
+        let result;
+
+        switch (menu) {
+            case 1:
+                result = firstNum + endNum;
+                break;
+            case 2:
+                result = firstNum - endNum;
+                break;
+            case 3:
+                result = firstNum * endNum;
+                break;
+            case 4:
+                if (endNum === 0) {
+                    result = "0으로 나눌 수 없습니다.";
+                } else {
+                    result = firstNum / endNum;
+                }
+                break;
+            default:
+                result = "1~4 사이의 번호를 입력해주세요.";
+        }
+
+        resBox.textContent = `결과: ${result}`;
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>예약 확인</title>
+</head>
+<body>
+    <h2>예약 정보 입력</h2>
+    <form id="reservationForm">
+        <label for="age">나이:</label>
+        <input type="number" id="age" name="age" min="0" required /><br/><br/>
+
+        <label for="eventCode">이벤트 코드 (E1, E2, E3):</label>
+        <input type="text" id="eventCode" name="eventCode" maxlength="2" required /><br/><br/>
+
+        <label for="reservationDate">예약 날짜 (1~30):</label>
+        <input type="number" id="reservationDate" name="reservationDate" min="1" max="30" required /><br/><br/>
+
+        <button type="submit">예약 확인</button>
+    </form>
+
+    <h3>결과:</h3>
+    <p id="result"></p>
+
+    <script>
+        function isValidEventCode(code) {
+            return ['E1', 'E2', 'E3'].includes(code);
+        }
+
+        function isValidDate(date) {
+            return Number.isInteger(date) && date >= 1 && date <= 30;
+        }
+
+        function checkReservation(age, eventCode, reservationDate) {
+            if (!isValidEventCode(eventCode) || !isValidDate(reservationDate)) {
+                return "잘못된 입력입니다. 프로그램을 종료합니다.";
+            }
+
+            switch (eventCode) {
+                case 'E1':
+                    if (age < 18) return "나이 제한으로 인해 예약할 수 없습니다.";
+                    return "예약이 완료되었습니다!";
+                case 'E2':
+                    if (reservationDate % 2 !== 0) return "선택하신 날짜에는 예약할 수 없습니다.";
+                    return "예약이 완료되었습니다!";
+                case 'E3':
+                    if (age < 16) return "나이 제한으로 인해 예약할 수 없습니다.";
+                    if (reservationDate % 7 !== 0) return "선택하신 날짜에는 예약할 수 없습니다.";
+                    return "예약이 완료되었습니다!";
+                default:
+                    return "잘못된 입력입니다. 프로그램을 종료합니다.";
+                }
+        }
+
+        const form = document.getElementById('reservationForm');
+        const resultElem = document.getElementById('result');
+
+        form.addEventListener('submit', function(event) {
+        event.preventDefault(); // 페이지 새로고침 방지
+
+        const age = parseInt(document.getElementById('age').value, 10);
+        const eventCode = document.getElementById('eventCode').value.trim().toUpperCase();
+        const reservationDate = parseInt(document.getElementById('reservationDate').value, 10);
+
+        const result = checkReservation(age, eventCode, reservationDate);
+        resultElem.textContent = result;
+        });
+    </script>
+</body>
+</html>
