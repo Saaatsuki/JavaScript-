@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤 생성 비밀번호</title>
+    <style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #89f7fe, #66a6ff);
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #333;
+    }
+
+    .pasBox {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        padding: 30px 40px;
+        text-align: center;
+        animation: fadeIn 1s ease-out;
+    }
+
+    label {
+        font-size: 1.1rem;
+        margin-right: 10px;
+    }
+
+    input[type="number"] {
+        padding: 8px 12px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        outline: none;
+        font-size: 1rem;
+        width: 80px;
+        transition: box-shadow 0.3s;
+    }
+
+    input[type="number"]:focus {
+        box-shadow: 0 0 8px #66a6ff;    
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    button:active {
+        transform: scale(0.98);
+    }
+
+    #result {
+        margin-top: 25px;
+        font-size: 1.2rem;
+        background: rgba(255, 255, 255, 0.3);
+        padding: 15px 20px;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        word-wrap: break-word;
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+
+    </style>
+</head>
+<body>
+    <div class="pasBox">
+        <label for="pasLen">Password의 길이: </label>
+        <input type="number" id="pasLen" min="8">
+        <button type="submit" id="submit">확인</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        // 랜덤 문자 반환 함수
+        const ramdomChar = (argChar) => {
+            return argChar[Math.floor(Math.random() * argChar.length)];
+        }
+
+        // 문자열 섞기 함수
+        const shuffle = (argStr) => {
+            return argStr.split("").sort(() => Math.random() - 0.5).join("");
+        }
+
+        // 랜덤 비밀번호 생성 함수
+        function ramdomPassword(argLen) {
+            const lower = "abcdefghijklmnopqrstuvwxyz";
+            const upper = lower.toUpperCase();
+            const number = "0123456789";
+            const mark = "!@#$%^&*";
+            const allchar = lower + upper + number + mark;
+
+            let password = ramdomChar(lower) + ramdomChar(upper) + ramdomChar(number) + ramdomChar(mark);
+
+            for (let i = 4; i < argLen; i++) {
+                password += ramdomChar(allchar);
+            }
+
+            return shuffle(password);
+        }
+
+        // 버튼 클릭 이벤트
+        document.getElementById("submit").addEventListener("click", function () {
+            const inputLen = Number(document.getElementById("pasLen").value);
+            const resultDiv = document.getElementById("result");
+
+            if (isNaN(inputLen) || inputLen < 8) {
+                resultDiv.innerText = "8글자 이상의 숫자를 입력하세요.";
+            } else {
+                const password = ramdomPassword(inputLen);
+                resultDiv.innerText = `생성된 비밀번호 : ${password}`;
+            }
+        });
+    </script>
+</body>
+</html>
