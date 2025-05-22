@@ -59,19 +59,20 @@
 
         switch (menu) {
             case 1:
-                result = firstNum + endNum;
+                result = `${firstNum} + ${endNum} = ${firstNum + endNum}`;
                 break;
             case 2:
-                result = firstNum - endNum;
+                result = `${firstNum} - ${endNum} = ${firstNum - endNum}`;
                 break;
             case 3:
-                result = firstNum * endNum;
+                result = `${firstNum} × ${endNum} = ${firstNum * endNum}`;
                 break;
             case 4:
                 if (endNum === 0) {
                     result = "0으로 나눌 수 없습니다.";
                 } else {
-                    result = firstNum / endNum;
+                    result = `${firstNum} ÷ ${endNum} = ${Math.floor(firstNum / endNum)} 余り ${firstNum % endNum}`;
+
                 }
                 break;
             default:

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤 비밀번호 생성기</title>
+</head>
+<body>
+    <div class="pasBox">
+        <label for="pasLen">Password의 길이: </label>
+        <input type="number" id="pasLen" min="8">
+        <button type="submit" id="generateBtn">확인</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        function randomChar(chars) {
+            return chars[Math.floor(Math.random() * chars.length)];
+        }
+
+        function shuffle(str) {
+            return str.split('').sort(() => Math.random() - 0.5).join('');
+        }
+
+        function randomPassword(length) {
+            const lower = 'abcdefghijklmnopqrstuvwxyz';
+            const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const digits = '0123456789';
+            const allChars = lower + upper + digits;
+
+            if (length < 3) return ''; // 安全対策: 長さが3未満だと要件を満たせない
+
+            // 各カテゴリから1文字ずつ
+            let password = randomChar(lower) + randomChar(upper) + randomChar(digits);
+
+            // 残りの文字をランダムに追加
+            for (let i = 3; i < length; i++) {
+                password += randomChar(allChars);
+            }
+
+            // シャッフルしてランダム性を向上
+            return shuffle(password);
+        }
+
+        document.getElementById('generateBtn').addEventListener('click', function () {
+            const lengthInput = document.getElementById('pasLen').value;
+            const length = parseInt(lengthInput);
+
+            if (isNaN(length) || length < 8) {
+                document.getElementById('result').innerText = '❗ 8글자 이상의 숫자를 입력하세요.';
+            } else {
+                const newPassword = randomPassword(length);
+                document.getElementById('result').innerText = `✅ 생성된 비밀번호: ${newPassword}`;
+            }
+        });
+    </script>
+</body>
+</html>
