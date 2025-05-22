@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>가위 바위 보</title>
+  <style>
+    body {
+        background-color: rgb(166, 216, 250);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: sans-serif;
+    }
+
+    h1, h3 {
+        color: white;
+    }
+
+    .btnDiv {
+        display: flex;
+    }
+
+    .btn {
+        width: 150px;
+        height: 150px;
+        background-color: white;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+        padding: 10px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+    .btn img {
+        
+        object-fit: contain;
+    }
+
+    h4 {
+        margin: 0;
+        color: rgb(166, 216, 250);
+    }
+
+    #scoreBoard {
+        margin-top: 20px;
+        font-size: 18px;
+        color: rgb(119, 190, 236);
+        background-color: rgba(255, 255, 255, 0.3);
+        padding: 10px 20px;
+        border-radius: 10px;
+    }
+
+
+    #popup {
+        position: fixed;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        width: 300px;
+        transform: translate(-50%, -50%);
+        background: white;
+        color: rgb(119, 190, 236);
+        padding: 30px 50px;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        font-size: 20px;
+        display: none;
+        z-index: 1000;
+        animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translate(-50%, -60%); }
+        to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    #popup img{
+        width: 150px;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>가위 바위 보</h1>
+  <h3>선택해 주세요</h3>
+
+  <div class="btnDiv">
+    <div class="btn choki">
+        <h4>가위</h4>
+        <img src="chokidamon.png" alt="가위" style="height: 125px;">
+    </div>
+    <div class="btn gu">
+        <h4>바위</h4>
+        <img src="padamon.png" alt="바위" style="height: 120px;">
+    </div>
+    <div class="btn pa">
+        <h4>보</h4>
+        <img src="gudamon.png" alt="보" style="height: 120px;">
+    </div>
+  </div>
+
+  <div id="scoreBoard">
+     승: 0 |  패: 0 |  무승부: 0
+  </div>
+
+  <div id="popup"></div>
+
+  <script>
+    const hands = ["가위", "바위", "보"];
+    let wins = 0, losses = 0, draws = 0;
+
+    function play(user) {
+        const computer = Math.floor(Math.random() * 3);
+        const diff = user - computer;
+        let result = "";
+        let image = "";
+
+        if (diff === 0) {
+            result = " 무승부!";
+            image = "https://i.pinimg.com/originals/4b/6b/a3/4b6ba3ff4558b12ac1e6307e42463ce8.png"
+            draws++;
+        } else if (diff === 1 || diff === -2) {
+            result = " 승리!";
+            image = "https://contents.oricon.co.jp/upimg/news/20171017/2093447_201710170627956001508226075c.jpg";
+            wins++;
+        } else {
+            result = " 패배!";
+            image = "maketamon.jpg";
+            losses++;
+        }
+
+
+        const popup = document.getElementById("popup");
+        popup.innerHTML = `
+            당신: ${hands[user]}<br>
+            컴퓨터: ${hands[computer]}<br><br>
+            <strong style="font-size: 1.2em;">${result}</strong><br><br>
+            <img src="${image}" alt="결과 이미지">
+        `;
+        popup.style.display = "block";
+        setTimeout(() => popup.style.display = "none", 5000);
+
+        document.getElementById("scoreBoard").innerHTML =
+            ` 승: ${wins} |  패: ${losses} | 무승부: ${draws}`;
+    }
+
+    document.querySelector(".choki").addEventListener("click", () => play(0));
+    document.querySelector(".gu").addEventListener("click", () => play(1));
+    document.querySelector(".pa").addEventListener("click", () => play(2));
+  </script>
+</body>
+</html>

@@ -7,7 +7,7 @@
     <style>
     body {
         font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #89f7fe, #66a6ff);
+        /* background: linear-gradient(135deg, #89f7fe, #66a6ff); */
         margin: 0;
         padding: 0;
         height: 100vh;
@@ -122,7 +122,7 @@
 
             let password = ramdomChar(lower) + ramdomChar(upper) + ramdomChar(number) + ramdomChar(mark);
 
-            for (let i = 4; i < argLen; i++) {
+            for (let i = 5; i <= argLen; i++) {
                 password += ramdomChar(allchar);
             }
 
@@ -137,8 +137,7 @@
             if (isNaN(inputLen) || inputLen < 8) {
                 resultDiv.innerText = "8글자 이상의 숫자를 입력하세요.";
             } else {
-                const password = ramdomPassword(inputLen);
-                resultDiv.innerText = `생성된 비밀번호 : ${password}`;
+                resultDiv.innerText = `생성된 비밀번호 : ${ramdomPassword(inputLen)}`;
             }
         });
     </script>
