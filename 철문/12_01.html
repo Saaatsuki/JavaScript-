@@ -106,56 +106,56 @@
         <h4>보</h4>
         <img src="gudamon.png" alt="보" style="height: 120px;">
     </div>
-  </div>
+    </div>
 
-  <div id="scoreBoard">
-     승: 0 |  패: 0 |  무승부: 0
-  </div>
+    <div id="scoreBoard">
+        승: 0 |  패: 0 |  무승부: 0
+    </div>
 
-  <div id="popup"></div>
+    <div id="popup"></div>
 
-  <script>
-    const hands = ["가위", "바위", "보"];
-    let wins = 0, losses = 0, draws = 0;
+    <script>
+        const hands = ["가위", "바위", "보"];
+        let wins = 0, losses = 0, draws = 0;
 
-    function play(user) {
-        const computer = Math.floor(Math.random() * 3);
-        const diff = user - computer;
-        let result = "";
-        let image = "";
+        function play(user) {
+            const computer = Math.floor(Math.random() * 3);
+            const diff = user - computer;
+            let result = "";
+            let image = "";
 
-        if (diff === 0) {
-            result = " 무승부!";
-            image = "https://i.pinimg.com/originals/4b/6b/a3/4b6ba3ff4558b12ac1e6307e42463ce8.png"
-            draws++;
-        } else if (diff === 1 || diff === -2) {
-            result = " 승리!";
-            image = "https://contents.oricon.co.jp/upimg/news/20171017/2093447_201710170627956001508226075c.jpg";
-            wins++;
-        } else {
-            result = " 패배!";
-            image = "maketamon.jpg";
-            losses++;
+            if (diff === 0) {
+                result = " 무승부!";
+                image = "https://i.pinimg.com/originals/4b/6b/a3/4b6ba3ff4558b12ac1e6307e42463ce8.png"
+                draws++;
+            } else if (diff === 1 || diff === -2) {
+                result = " 승리!";
+                image = "https://contents.oricon.co.jp/upimg/news/20171017/2093447_201710170627956001508226075c.jpg";
+                wins++;
+            } else {
+                result = " 패배!";
+                image = "maketamon.jpg";
+                losses++;
+            }
+
+
+            const popup = document.getElementById("popup");
+            popup.innerHTML = `
+                당신: ${hands[user]}<br>
+                컴퓨터: ${hands[computer]}<br><br>
+                <strong style="font-size: 1.2em;">${result}</strong><br><br>
+                <img src="${image}" alt="결과 이미지">
+            `;
+            popup.style.display = "block";
+            setTimeout(() => popup.style.display = "none", 5000);
+
+            document.getElementById("scoreBoard").innerHTML =
+                ` 승: ${wins} |  패: ${losses} | 무승부: ${draws}`;
         }
 
-
-        const popup = document.getElementById("popup");
-        popup.innerHTML = `
-            당신: ${hands[user]}<br>
-            컴퓨터: ${hands[computer]}<br><br>
-            <strong style="font-size: 1.2em;">${result}</strong><br><br>
-            <img src="${image}" alt="결과 이미지">
-        `;
-        popup.style.display = "block";
-        setTimeout(() => popup.style.display = "none", 5000);
-
-        document.getElementById("scoreBoard").innerHTML =
-            ` 승: ${wins} |  패: ${losses} | 무승부: ${draws}`;
-    }
-
-    document.querySelector(".choki").addEventListener("click", () => play(0));
-    document.querySelector(".gu").addEventListener("click", () => play(1));
-    document.querySelector(".pa").addEventListener("click", () => play(2));
-  </script>
+        document.querySelector(".choki").addEventListener("click", () => play(0));
+        document.querySelector(".gu").addEventListener("click", () => play(1));
+        document.querySelector(".pa").addEventListener("click", () => play(2));
+    </script>
 </body>
 </html>

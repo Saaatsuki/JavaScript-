@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>야구 게임</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+
+        html {
+            background-color: aliceblue;
+        }
+
+        body {
+            font-weight: 700;
+            background-color: #fffde4;
+            /* height: 550px; */
+            border: 2px solid #f3c581;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: 
+            repeating-linear-gradient(
+                to right,
+                rgba(233, 208, 163, 0.4),
+                rgba(233, 208, 163, 0.4) 20px,
+                transparent 20px,
+                transparent 40px
+            ),
+            repeating-linear-gradient(
+                to bottom,
+                rgba(233, 208, 163, 0.4),
+                rgba(233, 208, 163, 0.4) 20px,
+                transparent 20px,
+                transparent 40px
+            );
+
+        }
+
+        main {
+            background-color: white;
+            /* height: 400px; */
+            width: 400px;        
+            border-radius: 30px; 
+            border: 3px solid #f3c581;
+            padding: 3%;
+            margin: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ebb461;
+        }
+
+        h4 {
+            margin: 0;
+            color: #ebb461;
+            text-align: center;
+        }
+
+        .user {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .userInput {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        .userNum {
+            margin: 10px;
+        } 
+
+        .userInput input {
+            border:1.5px solid #ebb461;
+            border-radius: 5px;
+            height: 30px;
+            width: 60px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        input:focus {
+            color: #ebb461;
+            border: 3px solid #ebb461;
+            outline: none;
+        }
+
+        input:not(:placeholder-shown) {
+            border: 2px solid #ebb461;
+            color: #ebb461;
+        }
+
+
+        button {
+            background-color: #ebb461;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 60px;
+            height: 30px;
+        }
+
+        button:hover {
+            background-color: #d9a84e;
+        }
+
+        button:active {
+            background-color: white;
+            color: #d9a84e;
+            border: 1.5px solid #d9a84e;
+            /* transform: scale(0.9); */
+        }
+
+        .comNum {
+            width: 60px;
+            height: 30px;
+            border: 2px solid #ebb461;
+            border-radius: 5px;
+            margin: 10px;
+            text-align: center;
+            text-justify: center;
+        }
+
+        .computerOutput {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        .res {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 15px; /* 画像の間にスペース */
+        }
+
+        .re {
+            background-color: #fff9eb;
+            padding: 10px;
+            border: 2px solid #f3c581;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(243, 197, 129, 0.3);
+        }
+
+        .re_img {
+            width: 60px;
+            height: auto;
+            display: block;
+        }
+
+        #reslt {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #fffef6;
+            border: 2px dashed #f3c581;
+            border-radius: 15px;
+            text-align: center;
+            display: grid;
+            grid-template-columns: 6fr 4fr;
+        }
+
+        #reslt h6 {
+            margin: 8px 0;
+            color: #d9a84e;
+            font-weight: 700;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .resultAll {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <h1>Baseball Game</h1>
+    <img src="https://www.sanrio.co.jp/wp-content/themes/sanrio2022/common/images/digital/h1_char01.png" alt="cogimyun" style="position: fixed; width: 100px; left: 370px;">
+    <main>
+        <div class="user">
+            <h4>User number Input</h4>
+            <div class="userInput">
+                <input type="number" min="0" max="9" class="userNum" id="userNum1" >
+                <input type="number" min="0" max="9" class="userNum" id="userNum2" >
+                <input type="number" min="0" max="9" class="userNum" id="userNum3" >
+            </div>
+            <button type="submit">Start</button>
+        </div>
+
+        <div class="computer">
+            <h4>User number Input</h4>
+            <div class="computerOutput">
+                <div class="comNum" id="comNum1" ></div> 
+                <div class="comNum" id="comNum2" ></div>
+                <div class="comNum" id="comNum3" ></div>
+            </div>
+        </div>
+        <div class="res">
+            <div class="res1 re"><img src="myun....png" alt="result" class="re_img"></div>
+            <div class="res2 re"><img src="ahahamyun.png" alt="result" class="re_img"></div>
+            <div class="res3 re"><img src="bikkurimyun.png" alt="result" class="re_img"></div>
+        </div>
+        <div id="reslt">
+            <div class="resOnce">
+                <h6>01 : Strike 1 Ball 2 Out 0</h6>
+                <h6>02 : Strike 1 Ball 2 Out 0</h6>
+                <h6>03 : Strike 1 Ball 2 Out 0</h6>
+            </div>
+            <div class="resultAll">
+
+            </div>
+        </div>
+    </main>
+    <script>
+        const button = document.querySelector("button");
+        const comNums = [];
+        const userInputs = [
+            document.getElementById("userNum1"),
+            document.getElementById("userNum2"),
+            document.getElementById("userNum3")
+        ];
+        const comDivs = [
+            document.getElementById("comNum1"),
+            document.getElementById("comNum2"),
+            document.getElementById("comNum3")
+        ];
+        const resOnceDiv = document.querySelector(".resOnce");
+        const resultImages = document.querySelectorAll(".res img");
+
+        let tries = 0;
+        let strikeOuts = 0;
+        let isGameOver = false;
+
+        // 正解画像と不正解画像
+        const correctImgs = ["marumyun1.png", "wakuwakumyun.png", "sugoimyun.png"];
+        const wrongImgs = ["myun....png", "ahahamyun.png", "bikkurimyun.png"];
+
+        function generateRandomNumbers() {
+            while (comNums.length < 3) {
+                const rand = Math.floor(Math.random() * 10);
+                if (!comNums.includes(rand)) {
+                    comNums.push(rand);
+                }
+            }
+            // 結果欄に答えを表示（デバッグ目的）
+            for (let i = 0; i < 3; i++) {
+                comDivs[i].textContent = comNums[i];
+            }
+            console.log("Computer:", comNums);
+        }
+
+        function getUserNumbers() {
+            return userInputs.map(input => parseInt(input.value));
+        }
+
+        function checkResult(userNums) {
+            let strike = 0;
+            let ball = 0;
+
+            for (let i = 0; i < 3; i++) {
+                if (userNums[i] === comNums[i]) {
+                    strike++;
+                } else if (comNums.includes(userNums[i])) {
+                    ball++;
+                }
+            }
+
+            const out = 3 - strike - ball;
+            return { strike, ball, out };
+        }
+
+        function updateImages(strike, ball) {
+            const imgs = strike > 0 || ball > 0 ? correctImgs : wrongImgs;
+            resultImages.forEach(img => {
+                const randImg = imgs[Math.floor(Math.random() * imgs.length)];
+                img.src = randImg;
+            });
+        }
+
+        button.addEventListener("click", () => {
+            if (isGameOver) return;
+
+            const userNums = getUserNumbers();
+            if (new Set(userNums).size < 3) {
+                alert("중복되지 않는 3개의 숫자를 입력해주세요.");
+                return;
+            }
+
+            const { strike, ball, out } = checkResult(userNums);
+            tries++;
+
+            const line = `${String(tries).padStart(2, '0')} : Strike ${strike} Ball ${ball} Out ${out}`;
+            const resultLine = document.createElement("h6");
+            resultLine.textContent = line;
+            resOnceDiv.appendChild(resultLine);
+
+            updateImages(strike, ball);
+
+            // 勝利判定
+            if (strike === 3) {
+                alert("🎉 축하합니다! 정답입니다!");
+                isGameOver = true;
+                return;
+            }
+
+            // 패배 조건 판정
+            if (tries >= 5) {
+                alert("❌ 게임 오버! 5번 초과 시도했습니다.");
+                isGameOver = true;
+                return;
+            }
+
+            if (strike === 0) strikeOuts++;
+            if (strikeOuts >= 2) {
+                alert("❌ 게임 오버! Strike Out 2회 발생했습니다.");
+                isGameOver = true;
+            }
+        });
+
+        generateRandomNumbers();
+    </script>
+
+
+
+    
+</body>
+</html>
