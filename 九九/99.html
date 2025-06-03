@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="99.css">
+  <title>九九</title>
+</head>
+<body>
+    <h1>九九</h1>
+    <div class="gugu">
+        <input type="number" min="1" max="9" id="firstNum">
+        <p>×</p>
+        <input type="number" min="1" max="9" id="endNum">
+        <p>=</p>
+        <p id="answer"></p>
+    </div>
+
+    <script>
+        const firstNum = document.getElementById('firstNum');
+        const endNum = document.getElementById('endNum');
+        const answer = document.getElementById('answer');
+
+
+        const gugu = (a, b) => {
+            return a * b;
+        };
+
+        const updateAnswer = () => {
+        const num1 = parseInt(firstNum.value);
+        const num2 = parseInt(endNum.value);
+
+            if (!isNaN(num1) && !isNaN(num2)) {
+                answer.textContent = gugu(num1, num2);
+            } else {
+                answer.textContent = '';
+            }
+        };
+
+        firstNum.addEventListener('input', updateAnswer);
+        endNum.addEventListener('input', updateAnswer);
+    </script>
+</body>
+</html>
