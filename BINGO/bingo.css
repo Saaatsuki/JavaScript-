@@ -1,0 +1,110 @@
+/* 全体レイアウト */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background:#313131;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+/* タイトル */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* 入力ボックス */
+.inputBox {
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    width: fit-content;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+}
+
+.inputBox input {
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    width: 80px;
+    margin-left: 10px;
+    outline: none;
+}
+
+/* スタートボタン */
+#startBtn {
+    margin-top: 10px;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #00c9ff;
+    background: linear-gradient(to right, #00c9ff, #92fe9d);
+    border: none;
+    border-radius: 30px;
+    color: #000;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+#startBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* 出た数字・回数表示 */
+#randomNum h3,
+#gameCount,
+#bingoCount,
+#reachCount {
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+/* ビンゴ表 */
+#bingo table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+#bingo td {
+    width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+
+/* 抽選されたマスの色 */
+#bingo td.marked {
+    background-color: #00ffcc;
+    color: #000;
+    transform: scale(1.1);
+}
+
+/* コメント欄 */
+#comment {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+.bingo-person {
+    display: inline-block;
+    margin: 10px;
+    background-color: rgba(255,255,255,0.05);
+    padding: 10px;
+    border-radius: 10px;
+}
