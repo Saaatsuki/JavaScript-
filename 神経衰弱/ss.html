@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神経衰弱</title>
+    <link rel="stylesheet" href="ss.css">
+</head>
+<body>
+    <h1>神経衰弱</h1>
+    <main>
+        <div id="cardBox" class="cardBox">
+            <div class="card c1"><img src="https://www.sanrio.co.jp/wp-content/uploads/2022/06/list-kuromi.png" alt="ca1"></div>
+            <div class="card c1"><img src="https://www.sanrio.co.jp/wp-content/uploads/2022/06/list-kuromi.png" alt="ca1"></div>
+            <div class="card c2"><img src="https://www.sanrio.co.jp/wp-content/uploads/2022/06/list-mymelody.png" alt="ca2"></div>
+            <div class="card c2"><img src="https://www.sanrio.co.jp/wp-content/uploads/2022/06/list-mymelody.png" alt="ca2"></div>
+            <div class="card c3"><img src="https://www.sanrio.co.jp/wp-content/uploads/2022/06/list-mysweetpiano.png" alt="ca3"></div>
+            <div class="card c3"><img src="https://www.sanrio.co.jp/wp-content/uploads/2022/06/list-mysweetpiano.png" alt="ca3"></div>
+            <div class="card c4"><img src="https://www.sanrio.co.jp/wp-content/themes/sanrio2022/common/images/news/h1_char.png" alt="ca4"></div>
+            <div class="card c4"><img src="https://www.sanrio.co.jp/wp-content/themes/sanrio2022/common/images/news/h1_char.png" alt="ca4"></div>
+            <div class="card c5"><img src="https://www.sanrio.co.jp/wp-content/themes/sanrio2022/common/images/spots/h1_char.png" alt="ca5"></div>
+            <div class="card c5"><img src="https://www.sanrio.co.jp/wp-content/themes/sanrio2022/common/images/spots/h1_char.png" alt="ca5"></div>
+            <div class="card c6"><img src="https://www.sanrio.co.jp/wp-content/themes/sanrio2022/common/images/goods/h1_char.png" alt="ca6"></div>
+            <div class="card c6"><img src="https://www.sanrio.co.jp/wp-content/themes/sanrio2022/common/images/goods/h1_char.png" alt="ca6"></div>
+
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cardBox = document.getElementById('cardBox');
+            const cards = Array.from(cardBox.children);
+
+            // カードをランダムに並べ替え
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+
+            // 一度カードBoxを空にしてシャッフル後に再追加
+            cardBox.innerHTML = '';
+            cards.forEach(card => {
+                const inner = document.createElement('div');
+                inner.classList.add('card-inner');
+
+                const front = document.createElement('div');
+                front.classList.add('card-front');
+                front.appendChild(card.querySelector('img'));
+
+                const back = document.createElement('div');
+                back.classList.add('card-back');
+
+                inner.appendChild(front);
+                inner.appendChild(back);
+
+                card.innerHTML = '';
+                card.appendChild(inner);
+
+                // クリックでカード裏返す
+                card.addEventListener('click', () => {
+                    card.classList.toggle('flipped');
+                });
+
+                cardBox.appendChild(card);
+            });
+        });
+    </script>
+
+
+</body>
+</html>
